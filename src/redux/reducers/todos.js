@@ -14,13 +14,13 @@ const todos = (state = initialState, action) => {
         [todo.id]: todo,
       }), {});
 
-      return state;
+      return { ...state };
     case ADD_TODO: {
       const { newTodo } = action;
 
       state.data[newTodo.id] = newTodo;
 
-      return state;
+      return { ...state };
     }
     case TOGGLE_TODO:
       const { id } = action;
@@ -30,7 +30,7 @@ const todos = (state = initialState, action) => {
         todo.completed = !todo.completed;
       }
 
-      return state;
+      return { ...state };
     default:
       return state;
   }

@@ -1,15 +1,15 @@
 const TODOS_LOCALSTORAGE_KEY = 'todos.react-redux';
 
-export const getTodos = () => {
+export const readTodos = () => {
   try {
-    return JSON.parse(localStorage.getItem(TODOS_LOCALSTORAGE_KEY)) || [];
+    return JSON.parse(localStorage.getItem(TODOS_LOCALSTORAGE_KEY));
   } catch (e) {
     console.error(e);
-    return [];
+    return null;
   }
 }
 
-export const saveTodos = todos => {
-  const todosJSON = JSON.stringify(Object.values(todos));
+export const saveTodos = ({ todos, nextId }) => {
+  const todosJSON = JSON.stringify({ todos, nextId });
   localStorage.setItem(TODOS_LOCALSTORAGE_KEY, todosJSON);
 }

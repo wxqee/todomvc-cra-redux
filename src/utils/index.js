@@ -1,7 +1,8 @@
-import * as todos from './todos';
+import { readTodos, saveTodos } from './todos';
 
 const utils = {
-  todos,
+  readTodos,
+  saveTodos,
 }
 
 export default utils;

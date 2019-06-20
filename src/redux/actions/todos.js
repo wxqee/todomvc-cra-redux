@@ -3,10 +3,16 @@ import utils from '../../utils';
 
 let nextId = 1;
 
-export const getTodos = () => ({
-  type: GET_TODOS,
-  todos: utils.todos.getTodos(),
-})
+export const getTodos = () => {
+  const { todos, nextId: newNextId = 1 } = utils.readTodos() || {};
+
+  nextId = newNextId;
+
+  return {
+    type: GET_TODOS,
+    todos: todos ? Object.values(todos) : [],
+  };
+}
 
 export const addTodo = text => (dispatch, getState) => {
   dispatch({
@@ -18,12 +24,14 @@ export const addTodo = text => (dispatch, getState) => {
     },
   });
 
-  utils.todos.saveTodos(getState().todos.data);
+  utils.saveTodos({ todos: getState().todos.data, nextId });
 }
 
-export const toggleTodo = id => {
-  return {
+export const toggleTodo = id => (dispatch, getState) => {
+  dispatch({
     type: TOGGLE_TODO,
     id,
-  };
+  });
+
+  utils.saveTodos({ todos: getState().todos.data, nextId });
 };

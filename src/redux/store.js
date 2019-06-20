@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
-import { addTodo, toggleTodo, getTodos } from './actions/todos';
+// import { addTodo, toggleTodo, getTodos } from './actions/todos';
 
 let store;
 

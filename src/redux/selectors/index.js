@@ -1,7 +1,7 @@
-import todos from './todos';
+import { getTodos } from './todos';
 
 const selectors = {
-  todos,
+  getTodos,
 };
 
 export default selectors;
