@@ -14,7 +14,7 @@ class Todo extends Component {
             onClick={this.handleClick}
           />
           <label>{text}</label>
-          <button className="destroy"></button>
+          <button className="destroy" onClick={this.handleDelete}></button>
         </div>
         <input className="edit" value="Create a TodoMVC template" />
       </li>
@@ -24,6 +24,11 @@ class Todo extends Component {
   handleClick = () => {
     const { id } = this.props.todo;
     this.props.onClick(id);
+  }
+
+  handleDelete = () => {
+    const { id } = this.props.todo;
+    this.props.onDelete(id);
   }
 }
 

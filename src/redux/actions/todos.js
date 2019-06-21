@@ -1,4 +1,4 @@
-import { GET_TODOS, ADD_TODO, TOGGLE_TODO } from "./types";
+import { GET_TODOS, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./types";
 import utils from '../../utils';
 
 let nextId = 1;
@@ -30,6 +30,15 @@ export const addTodo = text => (dispatch, getState) => {
 export const toggleTodo = id => (dispatch, getState) => {
   dispatch({
     type: TOGGLE_TODO,
+    id,
+  });
+
+  utils.saveTodos({ todos: getState().todos.data, nextId });
+};
+
+export const deleteTodo = id => (dispatch, getState) => {
+  dispatch({
+    type: DELETE_TODO,
     id,
   });
 

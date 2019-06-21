@@ -1,4 +1,4 @@
-import { GET_TODOS, ADD_TODO, TOGGLE_TODO } from "../actions/types";
+import { GET_TODOS, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "../actions/types";
 
 const initialState = {
   data: {},
@@ -22,7 +22,7 @@ const todos = (state = initialState, action) => {
 
       return { ...state };
     }
-    case TOGGLE_TODO:
+    case TOGGLE_TODO: {
       const { id } = action;
       const todo = state.data[id];
 
@@ -31,6 +31,12 @@ const todos = (state = initialState, action) => {
       }
 
       return { ...state };
+    }
+    case DELETE_TODO: {
+      const { id } = action;
+      delete state.data[id];
+      return { ...state };
+    }
     default:
       return state;
   }
